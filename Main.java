@@ -1,46 +1,44 @@
 
- class Player {
-    private int health;
-    private int attack;
-    private int strength;
+import java.util.Random;
 
-    // Constructor
-    public Player(int health, int attack, int strength) {
-        this.health = health;
-        this.attack = attack;
-        this.strength = strength;
+class arena {
+    private player player1;
+    private player player2;
+    Random random= new Random();
+    //constructor
+    arena(player player1,player player2){
+        this.player1=player1;
+        this.player2=player2;
+    }
+    private player selectDefender(player player1,player player2){
+        if(player1.getHealth()>player2.getHealth()){
+            return player1;
+        }
+        return player2;
+    }
+    private player selectAttacker(player player1,player player2){
+        if(player1.getHealth()<player2.getHealth()){
+            return player1;
+        }
+        return player2;
+    }
+    private int getDiceValue(){
+        int r= (int)random.nextInt()%7;
+        return r;
     }
 
-    // Getters
-    public int getHealth() {
-        return health;
-    }
 
-    public int getAttack() {
-        return attack;
-    }
 
-    public int getStrength() {
-        return strength;
-    }
 
-    // Setters
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    // Method to display player details for verification
-    public void displayDetails() {
-        System.out.println("Health: " + health);
-        System.out.println("Attack: " + attack);
-        System.out.println("Strength: " + strength);
-    }
 }
 
 public class Main {
     // Create a new player with health, attack, and strength
     public static void main(String []args) {
-        Player player1 = new Player(75, 30, 50);
-        player1.displayDetails();
+//        player player1 = new player(75, 30, 50);
+//        player1.displayDetails();
+
+
+
     }
 }
