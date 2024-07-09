@@ -1,6 +1,6 @@
 
 import java.util.Random;
-
+import java.util.Scanner;
 class arena {
     private player player1;
     private player player2;
@@ -95,9 +95,29 @@ class arena {
 public class Main {
     // Create a new player with health, attack, and strength
     public static void main(String []args) {
-        player player1 = new player(50, 6, 5);
-        player player2= new player(100,5,20);
+        Scanner sc= new Scanner(System.in);
+        int health,attack,strength;
+        player player1;
+        player player2;
+
+        System.out.println("Enter the Details of Player:1");
+        System.out.println("Enter health: ");
+        health=sc.nextInt();
+        System.out.println("Enter attack: ");
+        attack=sc.nextInt();
+        System.out.println("Enter strength: ");
+        strength=sc.nextInt();
+        player1=new player(health,attack,strength);
         player1.displayDetails();
+
+        System.out.println("Enter the Details of Player:2");
+        System.out.println("Enter health: ");
+        health=sc.nextInt();
+        System.out.println("Enter attack: ");
+        attack=sc.nextInt();
+        System.out.println("Enter strength: ");
+        strength=sc.nextInt();
+        player2= new player(100,5,20);
         player2.displayDetails();
         arena field=new arena(player1,player2);
         field.startFight();
