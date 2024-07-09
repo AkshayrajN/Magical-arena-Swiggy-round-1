@@ -24,7 +24,7 @@ public class player {
     }
 
     // Setters
-    public void setHealth(int health) {
+     void setHealth(int health) {
         this.health = health;
     }
 
