@@ -24,38 +24,63 @@ class arena {
     }
     private int getDiceValue(){
 
-        return Math.abs(random.nextInt()%7);
+        return Math.abs(random.nextInt()%6)+1;
+    }
+    private void displayStats(player attacker,player defender,int round,int attackValue,int defendingStrength){
+
+        System.out.printf("%n+-------------------Round %d---------------------- %n",round);
+        System.out.println("Stats:");
+        System.out.printf("\t Attacker: damage %d ,health %d %n", attackValue,attacker.getHealth());
+        System.out.printf("\t Defender: defence %d, health %d%n", defendingStrength, defender.getHealth());
+        if(attackValue<defendingStrength){
+            System.out.printf("No Damage! Defence is greater than attack %n");
+        }
+        if(attackValue==defendingStrength){
+            System.out.printf("No Damage! Defence is equal attack %n");
+        }
     }
 
     private void fight(player player1,player player2){
 //        int count=20;
+        int round=0;
         while(player1.getHealth()>0 && player2.getHealth()>0 ){
+            round++;
             player attacker=selectAttacker();
             player defender=selectDefender();
             int attackerDice=getDiceValue();
             int defenderDice=getDiceValue();
-            int attackDamage= attackerDice*attacker.getAttack();
+            int attackValue= attackerDice*attacker.getAttack();
             int defendingStrength=defenderDice*defender.getStrength();
-            int totalDamage=Math.abs(attackDamage-defendingStrength);
+            displayStats(attacker,defender,round,attackValue,defendingStrength);
+            if(attackValue<defendingStrength){
+                continue;
+            }
+            int totalDamage=attackValue-defendingStrength;
             int currentHealth=defender.getHealth();
             int updateHealth=currentHealth-totalDamage;
 
-            if(updateHealth<0) defender.setHealth(0);
-            else defender.setHealth(updateHealth);
+            if(updateHealth<0) {
+                defender.setHealth(0);
+            }
+            else {
+                defender.setHealth(updateHealth);
+            }
 
-            System.out.printf("Player 1: dice %d, damage %d ,health%d%n", attackerDice, attackDamage,this.player1.getHealth());
-            System.out.printf("Player 2: dice %d, defended %d, health %d%n", defenderDice, defendingStrength, currentHealth);
-            System.out.printf("Total damage: %d%n", totalDamage);
-            System.out.printf("Defender health after fight: %d%n", this.player2.getHealth());
+            System.out.printf("\tTotal damage: %d%n", totalDamage);
+            System.out.printf("\tDefender health after fight: %d%n", defender.getHealth());
+//            System.out.println("+------------------------------------------------");
 
         }
-
+        System.out.println("====================");
+        System.out.println("|                  |");
         if (this.player1.getHealth() > 0) {
-            System.out.println("Player 1 wins!");
-        } else {
-            System.out.println("Player 2 wins!");
-        }
 
+            System.out.println("|\tPlayer 1 wins! |");
+        } else {
+            System.out.println("|\tPlayer 2 wins! |");
+        }
+        System.out.println("|                  |");
+        System.out.println("====================");
 
     }
 
@@ -71,7 +96,7 @@ public class Main {
     // Create a new player with health, attack, and strength
     public static void main(String []args) {
         player player1 = new player(50, 6, 5);
-        player player2= new player(100,5,10);
+        player player2= new player(100,5,20);
         player1.displayDetails();
         player2.displayDetails();
         arena field=new arena(player1,player2);
