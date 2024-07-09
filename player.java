@@ -12,15 +12,15 @@ public class player {
 
     // Getters
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public int getAttack() {
-        return attack;
+        return this.attack;
     }
 
     public int getStrength() {
-        return strength;
+        return this.strength;
     }
 
     // Setters
