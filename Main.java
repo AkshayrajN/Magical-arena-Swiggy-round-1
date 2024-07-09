@@ -1,10 +1,9 @@
-
 import java.util.Random;
 import java.util.Scanner;
 class arena {
     private player player1;
     private player player2;
-    Random random= new Random();
+    Random random=new Random();
     //constructor
     arena(player player1,player player2){
         this.player1=player1;
@@ -117,7 +116,7 @@ public class Main {
         attack=sc.nextInt();
         System.out.println("Enter strength: ");
         strength=sc.nextInt();
-        player2= new player(100,5,20);
+        player2= new player(health,attack,strength);
         player2.displayDetails();
         arena field=new arena(player1,player2);
         field.startFight();
