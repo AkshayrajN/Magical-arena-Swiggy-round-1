@@ -91,18 +91,19 @@ public class arena {
 //            System.out.println("+------------------------------------------------");
 
         }
-        System.out.println("====================");
-        System.out.println("|                  |");
+        System.out.println("==========================");
+        System.out.println("|                        |");
 
         //Checking who has Won the game by checking the health of both players
         if (this.player1.getHealth() > 0) {
 
-            System.out.println("|\tPlayer 1 wins! |");
+            System.out.println("|\tPlayer 1 wins!       |");
         } else {
-            System.out.println("|\tPlayer 2 wins! |");
+            System.out.println("|\tPlayer 2 wins!       |");
         }
-        System.out.println("|                  |");
-        System.out.println("====================");
+        System.out.println("|                        |");
+        System.out.println("==========================");
+
 
     }
 
